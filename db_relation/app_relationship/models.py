@@ -12,7 +12,6 @@ class Author(models.Model):
 class Profile(models.Model):
     author = models.OneToOneField(Author, on_delete=models.CASCADE)
     bio = models.TextField(blank=True)
-    website = models.URLField(blank=True)
 
     def __str__(self):
         return f"Profile of {self.author.name}"
@@ -20,7 +19,7 @@ class Profile(models.Model):
 
 class Book(models.Model):
     title = models.CharField(max_length=100)
-    publication_year = models.PositiveIntegerField()
+    publication_year = models.IntegerField()
     author = models.ForeignKey(Author, on_delete=models.CASCADE, related_name='books')
 
     def __str__(self):
