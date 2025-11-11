@@ -20,7 +20,7 @@ class Profile(models.Model):
 class Book(models.Model):
     title = models.CharField(max_length=100)
     publication_year = models.IntegerField()
-    author = models.ForeignKey(Author, on_delete=models.CASCADE, related_name='books')
+    author = models.ForeignKey(Author, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title
@@ -28,7 +28,7 @@ class Book(models.Model):
 
 class Reader(models.Model):
     name = models.CharField(max_length=100)
-    books = models.ManyToManyField(Book, related_name='readers')
+    books = models.ManyToManyField(Book, on_delete=models.SET_NULL)
 
     def __str__(self):
         return self.name
